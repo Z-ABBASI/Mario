@@ -33,11 +33,11 @@ public class Question : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(transform.position, Vector3.down, out hitInfo, 3))
+        if (Physics.Raycast(transform.position, Vector3.down, out hitInfo, 1))
         {
             StartCoroutine(AnimateCoin());
             GameManager.coins++;
-            GameManager.points += 200;
+            GameManager.points += 100;
         }
     }
 

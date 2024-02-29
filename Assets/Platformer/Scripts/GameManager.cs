@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI winText;
+    public static string message;
+    public static Color color;
     public static int coins = 0;
     public static int points = 0;
     
@@ -16,15 +20,26 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         levelText.text = $"WORLD\n1-1";
+        message = "";
     }
 
     // Update is called once per frame
     void Update()
     {
         // Timer Text
-        int intTime = 400 - (int)Time.realtimeSinceStartup;
+        int intTime = 100 - (int)Time.realtimeSinceStartup;
         string timeStr = $"Time\n{intTime}";
         timerText.text = timeStr;
+        
+        // Message text
+        if (intTime == 0)
+        {
+            message = "TIMES UP!";
+            color = Color.red;
+        }
+
+        winText.color = color;
+        winText.text = message;
         
         // Coins Text
         coinsText.text = $"\u00D7";
